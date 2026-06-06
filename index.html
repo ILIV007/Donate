@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support ILIV007 - Crypto Donation Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Vazirmatn:wght@400;700&display=swap');
+        
+        :root {
+            --font-en: 'Plus Jakarta Sans', sans-serif;
+            --font-fa: 'Vazirmatn', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-en);
+            background: radial-gradient(circle at 50% 30%, #03121e 0%, #010409 100%);
+            min-height: 100vh;
+            color: #f1f5f9;
+        }
+
+        body.lang-fa {
+            font-family: var(--font-fa);
+        }
+
+        /* افکت غبار فضایی پس‌زمینه */
+        .cosmic-dust {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(rgba(6, 182, 212, 0.05) 1px, transparent 0);
+            background-size: 40px 40px;
+            z-index: -1;
+        }
+
+        /* انیمیشن سیاه چاله */
+        .blackhole-core {
+            box-shadow: 0 0 40px 10px rgba(6, 182, 212, 0.4), 
+                        0 0 80px 20px rgba(8, 47, 73, 0.6);
+        }
+
+        .crypto-card {
+            background: rgba(10, 25, 41, 0.5);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(6, 182, 212, 0.08);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .crypto-card:hover {
+            border-color: var(--hover-color);
+            box-shadow: 0 0 30px -5px var(--hover-shadow);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="py-8 px-4 relative transition-colors duration-300">
+
+    <div class="cosmic-dust"></div>
+
+    <div class="max-w-4xl mx-auto flex justify-end mb-6">
+        <button onclick="toggleLanguage()" class="flex items-center gap-2 bg-slate-900/80 border border-cyan-500/30 hover:border-cyan-400 px-4 py-2 rounded-xl text-xs font-semibold text-cyan-400 shadow-lg transition-all">
+            <i class="fa-solid fa-language text-base"></i>
+            <span id="lang-btn-text">FA / فارسی</span>
+        </button>
+    </div>
+
+    <div class="max-w-4xl mx-auto">
+        
+        <header class="text-center mb-14">
+            <div class="relative w-32 h-32 mx-auto mb-6 flex items-center justify-center select-none">
+                <div class="absolute w-32 h-32 rounded-full border-2 border-dashed border-cyan-500/20 animate-spin" style="animation-duration: 20s;"></div>
+                <div class="absolute w-24 h-24 rounded-full border border-t-cyan-400 border-b-cyan-500/40 border-r-transparent border-l-transparent animate-spin" style="animation-duration: 4s;"></div>
+                <div class="absolute w-16 h-16 bg-cyan-400/20 rounded-full blur-xl animate-pulse"></div>
+                <div class="blackhole-core w-14 h-14 bg-black rounded-full z-10 border border-cyan-500/40"></div>
+            </div>
+            
+            <h1 id="txt-title" class="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-200 to-cyan-400 bg-clip-text text-transparent mb-3">ILIV007</h1>
+            <p id="txt-subtitle" class="text-slate-400 text-sm max-w-md mx-auto leading-relaxed">Fueling innovation through decentralized support. Choose a network below to contribute.</p>
+        </header>
+
+        <section class="mb-8 bg-slate-950/40 border border-slate-800 rounded-2xl overflow-hidden shadow-xl transition-all">
+            <button onclick="toggleAccordion()" class="w-full p-5 flex justify-between items-center bg-cyan-950/5 hover:bg-cyan-950/10 transition-colors text-left" id="accordion-btn">
+                <span class="font-semibold text-cyan-400 flex items-center gap-3 text-sm md:text-base">
+                    <i class="fa-solid fa-shield-halved text-cyan-500"></i>
+                    <span id="txt-acc-title">Important Guidelines & Transfer Verification</span>
+                </span>
+                <i id="accordion-icon" class="fa-solid fa-chevron-down text-cyan-500 transition-transform duration-300"></i>
+            </button>
+            <div id="accordion-content" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                <div class="p-5 text-slate-400 text-sm leading-relaxed border-t border-slate-900 bg-slate-950/60 space-y-3" id="txt-acc-desc">
+                    <p>• <strong>Network Alignment:</strong> Please ensure your wallet matches the specified network (e.g., TRC20 for USDT). Sending assets to the wrong network will result in permanent loss.</p>
+                    <p>• <strong>Automation:</strong> QR codes are dynamically generated and verified. Once the transaction hits the blockchain explorer, it is securely received.</p>
+                    <p>• <strong>Privacy & Security:</strong> Blockchain transactions are completely decentralized and safe. Thank you for supporting my development journey!</p>
+                </div>
+            </div>
+        </section>
+
+        <main class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+            <div class="crypto-card rounded-2xl p-6 flex flex-col justify-between" style="--hover-color: #f7931a; --hover-shadow: rgba(247,147,26,0.15);">
+                <div>
+                    <div class="flex justify-between items-center mb-5">
+                        <div class="flex items-center gap-3">
+                            <div class="w-11 h-11 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-500 text-xl">
+                                <i class="fa-brands fa-bitcoin text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-white tracking-wide">Bitcoin</h3>
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/10 text-amber-500 font-mono uppercase border border-amber-500/20">Native SegWit</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-black/40 rounded-xl p-3 flex items-center justify-between gap-2 border border-slate-900 mb-4">
+                        <span class="text-xs font-mono text-slate-400 truncate tracking-wider" id="addr-btc">bc1qu280unm2432jxhufgekg88hu62pyg28dpfhw4m</span>
+                        <button onclick="copyAddress('addr-btc', this)" class="text-xs text-cyan-400 font-semibold bg-cyan-950/40 hover:bg-cyan-950/90 px-3 py-1.5 rounded-lg border border-cyan-500/20 transition-all shrink-0 btn-copy">Copy</button>
+                    </div>
+                </div>
+                <div>
+                    <button onclick="toggleQR('qr-btc', 'bc1qu280unm2432jxhufgekg88hu62pyg28dpfhw4m')" class="w-full py-2 rounded-xl bg-slate-900/50 hover:bg-slate-900 hover:text-white text-xs text-slate-400 border border-slate-800 transition-all flex items-center justify-center gap-2 btn-qr">Show QR Code</button>
+                    <div id="qr-btc" class="hidden flex justify-center pt-4"></div>
+                </div>
+            </div>
+
+            <div class="crypto-card rounded-2xl p-6 flex flex-col justify-between" style="--hover-color: #f3ba2f; --hover-shadow: rgba(243,186,47,0.15);">
+                <div>
+                    <div class="flex justify-between items-center mb-5">
+                        <div class="flex items-center gap-3">
+                            <div class="w-11 h-11 rounded-xl bg-yellow-500/10 flex items-center justify-center">
+                                <svg class="w-6 h-6 text-yellow-500" viewBox="0 0 24 24" fill="currentColor"><path d="M16.624 13.9202l-4.624 4.619-4.624-4.619 4.624-4.619 4.624 4.619zm4.626-1.9202l-2.701-2.701-1.925 1.925 2.701 2.701 1.925-1.925zm-9.25 9.243l-2.701-2.701-1.925 1.925 2.701 2.701 1.925-1.925zm0-18.486L9.299 5.458l1.925 1.925 2.701-2.701-1.925-1.925zM2.75 12l1.925-1.925L7.376 12l-2.701 2.701L2.75 12zm9.25 2.839l-2.842-2.839 2.842-2.839 2.842 2.839-2.842 2.839z"/></svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-white tracking-wide">BNB</h3>
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-yellow-500/10 text-yellow-500 font-mono uppercase border border-yellow-500/20">BSC (BEP20)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-black/40 rounded-xl p-3 flex items-center justify-between gap-2 border border-slate-900 mb-4">
+                        <span class="text-xs font-mono text-slate-400 truncate tracking-wider" id="addr-bnb">0xe4f0c80ab473ef3680cee8b78b8f7bfc071fb6dd</span>
+                        <button onclick="copyAddress('addr-bnb', this)" class="text-xs text-cyan-400 font-semibold bg-cyan-950/40 hover:bg-cyan-950/90 px-3 py-1.5 rounded-lg border border-cyan-500/20 transition-all shrink-0 btn-copy">Copy</button>
+                    </div>
+                </div>
+                <div>
+                    <button onclick="toggleQR('qr-bnb', '0xe4f0c80ab473ef3680cee8b78b8f7bfc071fb6dd')" class="w-full py-2 rounded-xl bg-slate-900/50 hover:bg-slate-900 hover:text-white text-xs text-slate-400 border border-slate-800 transition-all flex items-center justify-center gap-2 btn-qr">Show QR Code</button>
+                    <div id="qr-bnb" class="hidden flex justify-center pt-4"></div>
+                </div>
+            </div>
+
+            <div class="crypto-card rounded-2xl p-6 flex flex-col justify-between" style="--hover-color: #ef0027; --hover-shadow: rgba(239,0,39,0.15);">
+                <div>
+                    <div class="flex justify-between items-center mb-5">
+                        <div class="flex items-center gap-3">
+                            <div class="w-11 h-11 rounded-xl bg-red-500/10 flex items-center justify-center">
+                                <svg class="w-6 h-6 text-red-500" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M24 12L12.16 0 0 12l1.91 1.63L12 3.11l10.09 10.52L24 12zm-12 3.56L3.92 14 12 24l8.08-10L12 15.56z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-white tracking-wide">TRON (TRX)</h3>
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-red-500/10 text-red-500 font-mono uppercase border border-red-500/20">TRC20</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-black/40 rounded-xl p-3 flex items-center justify-between gap-2 border border-slate-900 mb-4">
+                        <span class="text-xs font-mono text-slate-400 truncate tracking-wider" id="addr-trx">TCYgEojrmu5qvvHoFxEi21g8g7ZVtuC28s</span>
+                        <button onclick="copyAddress('addr-trx', this)" class="text-xs text-cyan-400 font-semibold bg-cyan-950/40 hover:bg-cyan-950/90 px-3 py-1.5 rounded-lg border border-cyan-500/20 transition-all shrink-0 btn-copy">Copy</button>
+                    </div>
+                </div>
+                <div>
+                    <button onclick="toggleQR('qr-trx', 'TCYgEojrmu5qvvHoFxEi21g8g7ZVtuC28s')" class="w-full py-2 rounded-xl bg-slate-900/50 hover:bg-slate-900 hover:text-white text-xs text-slate-400 border border-slate-800 transition-all flex items-center justify-center gap-2 btn-qr">Show QR Code</button>
+                    <div id="qr-trx" class="hidden flex justify-center pt-4"></div>
+                </div>
+            </div>
+
+            <div class="crypto-card rounded-2xl p-6 flex flex-col justify-between" style="--hover-color: #26a17b; --hover-shadow: rgba(38,161,123,0.15);">
+                <div>
+                    <div class="flex justify-between items-center mb-5">
+                        <div class="flex items-center gap-3">
+                            <div class="w-11 h-11 rounded-xl bg-emerald-500/10 flex items-center justify-center">
+                                <svg class="w-6 h-6 text-emerald-500" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M18.25 6.425v-3.75H24V0H0v2.675h5.75v3.75C2.35 7.15 0 9.875 0 13.075c0 3.2 2.35 5.925 5.75 6.65v4.275h12.5v-4.275c3.4-.725 5.75-3.45 5.75-6.65 0-3.2-2.35-5.925-5.75-6.65zM12 17.5c-2.9 0-5.25-1.95-5.25-4.375s2.35-4.375 5.25-4.375 5.25 1.95 5.25 4.375S14.9 17.5 12 17.5z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-white tracking-wide">Tether (USDT)</h3>
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-500 font-mono uppercase border border-emerald-500/20">TRC20</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-black/40 rounded-xl p-3 flex items-center justify-between gap-2 border border-slate-900 mb-4">
+                        <span class="text-xs font-mono text-slate-400 truncate tracking-wider" id="addr-usdt">TCYgEojrmu5qvvHoFxEi21g8g7ZVtuC28s</span>
+                        <button onclick="copyAddress('addr-usdt', this)" class="text-xs text-cyan-400 font-semibold bg-cyan-950/40 hover:bg-cyan-950/90 px-3 py-1.5 rounded-lg border border-cyan-500/20 transition-all shrink-0 btn-copy">Copy</button>
+                    </div>
+                </div>
+                <div>
+                    <button onclick="toggleQR('qr-usdt', 'TCYgEojrmu5qvvHoFxEi21g8g7ZVtuC28s')" class="w-full py-2 rounded-xl bg-slate-900/50 hover:bg-slate-900 hover:text-white text-xs text-slate-400 border border-slate-800 transition-all flex items-center justify-center gap-2 btn-qr">Show QR Code</button>
+                    <div id="qr-usdt" class="hidden flex justify-center pt-4"></div>
+                </div>
+            </div>
+
+         </main>
+
+        <footer class="text-center mt-16 text-[10px] text-slate-600 tracking-widest uppercase">
+            // Space Core Portal — ILIV007
+        </footer>
+    </div>
+
+    <script>
+        let currentLang = 'en';
+
+        const dictionary = {
+            en: {
+                title: "ILIV007",
+                subtitle: "Fueling innovation through decentralized support. Choose a network below to contribute securely.",
+                accTitle: "Important Guidelines & Transfer Verification",
+                accDesc: `<p>• <strong>Network Alignment:</strong> Please ensure your crypto wallet matches the specified network (e.g., TRC20 for USDT). Sending tokens via an unsupported network will result in permanent loss of funds.</p>
+                          <p>• <strong>Verification Process:</strong> The platform dynamically monitors addresses. Once your transaction receives standard blockchain block confirmations, it will be automatically consolidated.</p>
+                          <p>• <strong>Transparency & Privacy:</strong> Decentralized donations guarantee end-to-end cryptography. Thank you for empowering my engineering and deployment workflows!</p>`,
+                copy: "Copy",
+                copied: "Copied!",
+                showQr: "Show QR Code",
+                hideQr: "Hide QR Code",
+                btnLang: "FA / فارسی"
+            },
+            fa: {
+                title: "ILIV007",
+                subtitle: "حمایت از توسعه پروژه‌ها از طریق درگاه‌های غیرمتمرکز کریپتو. برای واریز امن، یکی از شبکه‌های زیر را انتخاب کنید.",
+                accTitle: "دستورالعمل‌های مهم و تاییدیه انتقال وجه",
+                accDesc: `<p>• <strong>تطابق دقیق شبکه:</strong> لطفاً حتماً مطمئن شوید که شبکه انتخابی در کیف پول شما با شبکه قید شده روی کارت (مثلاً TRC20 برای تتر) یکی باشد. انتقال در شبکه اشتباه منجر به از دست رفتن همیشگی دارایی می‌شود.</p>
+                          <p>• <strong>فرآیند پردازش تراکنش:</strong> این پلتفرم آدرس‌ها را به صورت پویا مانیتور می‌کند. پس از تایید تراکنش در اکسپلورر بلاکچین، دارایی به طور خودکار دریافت و ثبت خواهد شد.</p>
+                          <p>• <strong>امنیت و حریم خصوصی:</strong> تراکنش‌های رمزنگاری شده غیرمتمرکز، امنیت و ناشناس بودن کامل هردوطرف را تضمین می‌کند. از اینکه فرآیند توسعه و مهندسی من را حمایت می‌کنید سپاسگزارم!</p>`,
+                copy: "کپی آدرس",
+                copied: "کپی شد!",
+                showQr: "نمایش کد QR",
+                hideQr: "پنهان‌سازی QR",
+                btnLang: "EN / انگلیسی"
+            }
+        };
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'fa' : 'en';
+            const langData = dictionary[currentLang];
+            
+            // اعمال دایرکشن و استایل‌های بدنه
+            if (currentLang === 'fa') {
+                document.documentElement.setAttribute('dir', 'rtl');
+                document.documentElement.setAttribute('lang', 'fa');
+                document.body.classList.add('lang-fa');
+                document.getElementById('accordion-btn').style.textAlign = 'right';
+            } else {
+                document.documentElement.setAttribute('dir', 'ltr');
+                document.documentElement.setAttribute('lang', 'en');
+                document.body.classList.remove('lang-fa');
+                document.getElementById('accordion-btn').style.textAlign = 'left';
+            }
+
+            // به‌روزرسانی متن‌ها
+            document.getElementById('txt-title').innerText = langData.title;
+            document.getElementById('txt-subtitle').innerText = langData.subtitle;
+            document.getElementById('txt-acc-title').innerText = langData.accTitle;
+            document.getElementById('txt-acc-desc').innerHTML = langData.accDesc;
+            document.getElementById('lang-btn-text').innerText = langData.btnLang;
+
+            // به روز رسانی دکمه‌های کپی و QR به زبان جدید
+            document.querySelectorAll('.btn-copy').forEach(btn => {
+                if(!btn.disabled) btn.innerText = langData.copy;
+            });
+            document.querySelectorAll('.btn-qr').forEach(btn => {
+                const isHidden = btn.nextElementSibling.classList.contains('hidden');
+                btn.innerHTML = `<i class="fa-solid fa-qrcode"></i> ${isHidden ? langData.showQr : langData.hideQr}`;
+            });
+
+            // بازنشانی سایز آکاردئون در صورت باز بودن
+            const content = document.getElementById('accordion-content');
+            if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                content.style.maxHeight = content.scrollHeight + 'px';
+            }
+        }
+
+        function toggleAccordion() {
+            const content = document.getElementById('accordion-content');
+            const icon = document.getElementById('accordion-icon');
+            
+            if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                content.style.maxHeight = '0px';
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                content.style.maxHeight = content.scrollHeight + 'px';
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        function copyAddress(elementId, button) {
+            const textToCopy = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                button.innerText = dictionary[currentLang].copied;
+                button.disabled = true;
+                button.classList.add('bg-emerald-950/80', 'text-emerald-400', 'border-emerald-500/40');
+                
+                setTimeout(() => {
+                    button.innerText = dictionary[currentLang].copy;
+                    button.disabled = false;
+                    button.classList.remove('bg-emerald-950/80', 'text-emerald-400', 'border-emerald-500/40');
+                }, 2000);
+            });
+        }
+
+        function toggleQR(containerId, address) {
+            const container = document.getElementById(containerId);
+            const button = container.previousElementSibling.querySelector('.btn-qr') || container.previousElementSibling;
+            
+            if (!container.classList.contains('hidden')) {
+                container.classList.add('hidden');
+                button.innerHTML = `<i class="fa-solid fa-qrcode"></i> ${dictionary[currentLang].showQr}`;
+                return;
+            }
+            
+            // ساخت تصویر QR کد در صورت عدم وجود
+            if (container.innerHTML === "") {
+                const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=130x130&data=${address}&color=06b6d4&bgcolor=020617`;
+                container.innerHTML = `
+                    <div class="p-3 bg-slate-950/90 border border-slate-800 rounded-xl shadow-2xl mt-2 animate-fadeIn">
+                        <img src="${qrUrl}" alt="QR" class="w-[130px] h-[130px] rounded-lg border border-cyan-500/20">
+                    </div>
+                `;
+            }
+            
+            container.classList.remove('hidden');
+            button.innerHTML = `<i class="fa-solid fa-qrcode"></i> ${dictionary[currentLang].hideQr}`;
+        }
+    </script>
+</body>
+</html>
