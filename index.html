@@ -78,12 +78,12 @@
   <div class="cosmic-dust absolute inset-0 opacity-100 pointer-events-none"></div>
 
   <!-- Auras blur shadows -->
-  <div class="absolute top-[-10%] left-[-15%] w-[450px] h-[450px] rounded-full bg-indigo-950/10 blur-[130px] pointer-events-none"></div>
-  <div class="absolute bottom-[-10%] right-[-15%] w-[450px] h-[450px] rounded-full bg-cyan-950/10 blur-[135px] pointer-events-none"></div>
+  <div class="absolute top-[-10%] left-[-15%] w-[450px] h-[450px] rounded-full bg-slate-900/10 blur-[130px] pointer-events-none"></div>
+  <div class="absolute bottom-[-10%] right-[-15%] w-[450px] h-[450px] rounded-full bg-slate-900/10 blur-[135px] pointer-events-none"></div>
 
   <!-- Language switcher -->
   <div class="max-w-4xl w-full mx-auto flex justify-end mb-8 z-30">
-    <button onclick="toggleLanguage()" class="flex items-center gap-2 bg-slate-900/85 border border-slate-800 hover:border-cyan-500/40 px-4 py-2 rounded-xl text-xs font-semibold text-[#06b6d4] shadow-lg shadow-black/40 backdrop-blur-md cursor-pointer transition-colors">
+    <button onclick="toggleLanguage()" class="flex items-center gap-2 bg-slate-900/80 border border-slate-800 hover:border-slate-700 px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white shadow-lg shadow-black/40 backdrop-blur-md cursor-pointer transition-colors">
       <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M3 5h12M9 3v2m1.048 9.516a10.018 10.018 0 01-3.003-4.13m4.053 4.13a10.05 10.05 0 003.004-4.13m-6.007 0a9.98 9.98 0 00-3.003 4.13m4.053-4.13H3m14 11h-4m2.5-4.5s-2.5 1.5-2.5 4.5h5s0-3-2.5-4.5z" />
       </svg>
@@ -96,91 +96,114 @@
     <!-- Deep Astronomical Black Hole Header -->
     <header class="text-center mb-10">
       <div class="relative w-44 h-44 mx-auto mb-6 flex items-center justify-center select-none overflow-visible">
-        <!-- 1. Master Gravitationally Lensed High-Tech Cyber Black Hole SVG -->
-        <!-- 1. Master Gravitationally Lensed High-Tech Cyber Black Hole SVG (Now matching the official Grok logo shape) -->
+        <!-- 1. Master Gravitationally Lensed High-Tech Cyber Black Hole SVG (Perfect representation of lensed Gargantua) -->
         <svg 
-          class="absolute w-44 h-44 drop-shadow-[0_0_35px_rgba(6,182,212,0.45)] select-none pointer-events-none z-10" 
+          class="absolute w-44 h-44 drop-shadow-[0_0_40px_rgba(99,102,241,0.35)] select-none pointer-events-none z-10" 
           viewBox="0 0 200 200" 
           fill="none" 
           xmlns="http://www.w3.org/2000/svg"
         >
           <defs>
-            <!-- Space thermal lensing aura (high-energy cyan, blue, and deep space boundary) -->
-            <radialGradient id="haloGlow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.85" />
-              <stop offset="40%" stop-color="#3b82f6" stop-opacity="0.4" />
-              <stop offset="70%" stop-color="#ec4899" stop-opacity="0.15" />
-              <stop offset="100%" stop-color="#020617" stop-opacity="0" />
-            </radialGradient>
-            
-            <!-- Ultra-hot accretion disk gradient (cyber neon cyan to blue and deep violet) -->
-            <linearGradient id="accretionGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#3b82f6" />
-              <stop offset="25%" stop-color="#06b6d4" />
-              <stop offset="50%" stop-color="#ffffff" />
-              <stop offset="75%" stop-color="#ec4899" />
-              <stop offset="100%" stop-color="#3b82f6" />
+            <!-- Beautiful deep navy blue (سرمه‌ای) to electric violet-purple and white linear gradient -->
+            <linearGradient id="blackholeNavy" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#1e3a8a" /> <!-- Deep Navy Blue / سرمه‌ای -->
+              <stop offset="25%" stop-color="#4f46e5" /> <!-- Royal Electric Indigo -->
+              <stop offset="50%" stop-color="#a855f7" /> <!-- Luminous Cyber Purple -->
+              <stop offset="75%" stop-color="#ffffff" /> <!-- High-contrast shining White -->
+              <stop offset="100%" stop-color="#c084fc" /> <!-- Soft neon violet trailing edge -->
             </linearGradient>
 
-            <!-- Bright white-cyan highlight glow -->
-            <linearGradient id="slashGrad" x1="0%" y1="100%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#3b82f6" />
-              <stop offset="50%" stop-color="#ffffff" />
-              <stop offset="100%" stop-color="#06b6d4" />
-            </linearGradient>
+            <!-- Ambient glow filter for that luminous, polished look -->
+            <filter id="vectorGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="6" result="blur" />
+              <feComposite in="SourceGraphic" in2="blur" operator="over" />
+            </filter>
           </defs>
 
-          <!-- Underlying Space-Time Curvature Aura -->
-          <circle cx="100" cy="100" r="90" fill="url(#haloGlow)" />
+          <!-- Minimal outer cosmic radial light representing the accretion aura -->
+          <circle cx="100" cy="100" r="75" fill="none" stroke="#6366f1" stroke-width="0.5" stroke-dasharray="3 9" opacity="0.15" />
 
-          <!-- Event Horizon Central Singularity (deep space void backdrop behind accretion structures) -->
-          <circle cx="100" cy="100" r="34" fill="#020617" />
-          <!-- Photon Sphere boundary orbits -->
-          <circle cx="100" cy="100" r="35" stroke="#06b6d4" stroke-width="0.8" stroke-dasharray="3 6" stroke-opacity="0.4" fill="none" />
+          <g transform="rotate(-15 100 100)">
+            <!-- 1. Underlying outer glow representing lensed light leaks (Exact shape replicas with high blur for ambient neon) -->
+            <g filter="url(#vectorGlow)" opacity="0.65">
+              <!-- Outer lensed top arc -->
+              <path 
+                d="M 52,100 A 48,48 0 0,1 148,100" 
+                stroke="url(#blackholeNavy)" 
+                stroke-width="11" 
+                stroke-linecap="round" 
+                fill="none" 
+              />
+              <!-- Outer lensed bottom arc -->
+              <path 
+                d="M 141,124 A 48,48 0 0,1 59,124" 
+                stroke="url(#blackholeNavy)" 
+                stroke-width="11" 
+                stroke-linecap="round" 
+                fill="none" 
+              />
+              <!-- Diagonal accretion belt / ring -->
+              <path 
+                d="M 12,100 Q 100,92 188,100 Q 100,108 12,100 Z" 
+                fill="url(#blackholeNavy)" 
+              />
+            </g>
 
-          <!-- Glowing Outline Layer for a high-intensity quantum flare -->
-          <g filter="blur(4px)" opacity="0.6">
-            <path 
-              d="M 48 152 C 30 140, 24 115, 24 96 A 76 76 0 0 1 135 45 L 118 62 A 56 56 0 0 0 44 96 C 44 115, 52 130, 62 138 C 54 145, 50 150, 48 152 Z" 
-              fill="url(#accretionGrad)" 
+            <!-- 2. Sharp Primary Vector Elements -->
+            
+            <!-- Inner horizon thin outline ring -->
+            <circle 
+              cx="100" 
+              cy="100" 
+              r="35" 
+              stroke="url(#blackholeNavy)" 
+              stroke-width="2" 
+              fill="none" 
+              opacity="0.9" 
             />
-            <path 
-              d="M 152 48 C 170 60, 176 85, 176 104 A 76 76 0 0 1 65 155 L 82 138 A 56 56 0 0 0 156 104 C 156 85, 148 70, 138 62 C 146 55, 150 50, 152 48 Z" 
-              fill="url(#accretionGrad)" 
-            />
-            <path 
-              d="M 24 176 C 65 145, 125 85, 176 24 C 132 75, 75 132, 24 176 Z" 
-              fill="url(#slashGrad)" 
-            />
-          </g>
 
-          <!-- Vector Masked Solid Premium Sharp Grok Logo Layer -->
-          <g>
-            <!-- 1. Top-Left Arc -->
+            <!-- Upper thick accretion crescent -->
             <path 
-              d="M 48 152 C 30 140, 24 115, 24 96 A 76 76 0 0 1 135 45 L 118 62 A 56 56 0 0 0 44 96 C 44 115, 52 130, 62 138 C 54 145, 50 150, 48 152 Z" 
-              fill="url(#accretionGrad)" 
+              d="M 52,100 A 48,48 0 0,1 148,100" 
+              stroke="url(#blackholeNavy)" 
+              stroke-width="9" 
+              stroke-linecap="round" 
+              fill="none" 
+            />
+
+            <!-- Lower thick-cut accretion crescent (asymmetric gap placement matching image) -->
+            <path 
+              d="M 141,124 A 48,48 0 0,1 59,124" 
+              stroke="url(#blackholeNavy)" 
+              stroke-width="9" 
+              stroke-linecap="round" 
+              fill="none" 
+            />
+
+            <!-- Pitch black event horizon center to mask underlying layers -->
+            <circle cx="100" cy="100" r="29" fill="#020617" />
+
+            <!-- Accretion belt / ring passing in front -->
+            <path 
+              d="M 12,100 Q 100,92 188,100 Q 100,108 12,100 Z" 
+              fill="url(#blackholeNavy)" 
             />
             
-            <!-- 2. Bottom-Right Arc -->
+            <!-- Pure white core streak to match the high-luminance shine in their image -->
             <path 
-              d="M 152 48 C 170 60, 176 85, 176 104 A 76 76 0 0 1 65 155 L 82 138 A 56 56 0 0 0 156 104 C 156 85, 148 70, 138 62 C 146 55, 150 50, 152 48 Z" 
-              fill="url(#accretionGrad)" 
-            />
-
-            <!-- 3. High-Energy Central Slice (Accretion Blade/Slash passes in front cleanly) -->
-            <path 
-              d="M 24 176 C 65 145, 125 85, 176 24 C 132 75, 75 132, 24 176 Z" 
-              fill="url(#slashGrad)" 
+              d="M 18,100 L 182,100" 
+              stroke="#ffffff" 
+              stroke-width="2.5" 
+              stroke-linecap="round" 
             />
           </g>
         </svg>
 
         <!-- Quiet ambient core glow -->
-        <div class="absolute w-14 h-14 rounded-full bg-cyan-500/5 blur-xl pointer-events-none z-0"></div>
+        <div class="absolute w-14 h-14 rounded-full bg-white/10 blur-xl pointer-events-none z-0"></div>
       </div>
 
-      <h1 id="app-title" class="text-3xl md:text-4xl font-extrabold tracking-tight text-white drop-shadow-[0_2px_10px_rgba(6,182,212,0.4)] mb-4">
+      <h1 id="app-title" class="text-3xl md:text-4xl font-extrabold tracking-tight text-white drop-shadow-[0_2px_10px_rgba(255,255,255,0.15)] mb-4">
         ILIVIR3 Support Hub
       </h1>
       <p id="app-subtitle" class="text-slate-300 text-xs md:text-sm max-w-xl mx-auto leading-relaxed px-4">
@@ -191,13 +214,13 @@
     <!-- Info & Security Accordion -->
     <section class="mb-8 bg-slate-950/40 border border-slate-900 rounded-2xl overflow-hidden shadow-xl shadow-black/30 backdrop-blur-md">
       <button onclick="toggleAccordion()" class="w-full p-4 flex justify-between items-center bg-slate-900/10 hover:bg-slate-900/20 transition-colors text-right cursor-pointer select-none">
-        <span class="font-semibold text-cyan-400 flex items-center gap-3 text-xs md:text-sm">
-          <svg class="w-5 h-5 text-cyan-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <span class="font-semibold text-slate-200 flex items-center gap-3 text-xs md:text-sm">
+          <svg class="w-5 h-5 text-slate-300 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
           </svg>
           <span id="accordion-title">Complete Secure Transfer Guide</span>
         </span>
-        <svg id="accordion-arrow" class="w-4 h-4 text-cyan-400 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <svg id="accordion-arrow" class="w-4 h-4 text-slate-400 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
         </svg>
       </button>
@@ -230,7 +253,7 @@
         <div id="modal-coin-logo" class="w-9 h-9 rounded-xl bg-slate-900/60 flex items-center justify-center p-2 border border-slate-800 shrink-0"></div>
         <div>
           <h4 id="modal-coin-title" class="font-bold text-white text-sm"></h4>
-          <p id="modal-coin-network" class="text-[9px] text-cyan-400 font-mono tracking-wider"></p>
+          <p id="modal-coin-network" class="text-[9px] text-slate-400 font-mono tracking-wider"></p>
         </div>
       </div>
 
@@ -242,12 +265,12 @@
 
       <div class="bg-black/30 border border-slate-900 rounded-xl px-2.5 py-1.5 w-full mt-4 flex items-center justify-between gap-2 overflow-hidden">
         <span id="modal-wallet-address" class="text-[10px] font-mono text-slate-400 truncate select-all text-left w-full"></span>
-        <button onclick="copyModalAddress()" id="modal-copy-btn" class="text-[9px] text-cyan-400 font-semibold bg-cyan-400/10 hover:bg-cyan-400/20 px-2.5 py-1 rounded-lg border border-cyan-400/20 shrink-0 transition-all">Copy</button>
+        <button onclick="copyModalAddress()" id="modal-copy-btn" class="text-[9px] text-slate-300 hover:text-white font-semibold bg-white/5 hover:bg-white/10 px-2.5 py-1 rounded-lg border border-slate-800 shrink-0 transition-all">Copy</button>
       </div>
 
       <div class="flex gap-2.5 w-full mt-4">
-        <a id="modal-explorer-link" href="#" target="_blank" class="flex-1 py-2 px-3 bg-cyan-400/5 hover:bg-cyan-400/10 border border-cyan-400/20 text-[#06b6d4] hover:text-[#22d3ee] rounded-xl text-xs font-semibold flex items-center justify-center gap-1.5 transition-all text-center">
-          <svg class="w-3.5 h-3.5 text-[#06b6d4]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <a id="modal-explorer-link" href="#" target="_blank" class="flex-1 py-2 px-3 bg-white/5 hover:bg-white/10 border border-slate-800 hover:border-slate-700 text-slate-300 hover:text-white rounded-xl text-xs font-semibold flex items-center justify-center gap-1.5 transition-all text-center">
+          <svg class="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
           </svg>
           <span>Verify on Explorer</span>
@@ -411,7 +434,7 @@
       dict.accDesc.forEach(desc => {
         accordionHTML += `
           <div class="space-y-1">
-            <h4 class="font-bold text-cyan-400 flex items-center gap-2">
+            <h4 class="font-bold text-slate-200 flex items-center gap-2">
               <span class="text-xs select-none">✦</span>
               <span>${desc.subtitle}</span>
             </h4>
@@ -452,7 +475,7 @@
                 <span class="block text-[10px] text-slate-500 mb-1.5 font-medium">${dict.addressLabel}:</span>
                 <div class="bg-black/40 rounded-xl p-2.5 flex items-center justify-between gap-2 border border-slate-900/60">
                   <span class="text-xs font-mono text-slate-300 truncate tracking-wider select-all">${coin.address}</span>
-                  <button onclick="copyAddress('${coin.address}')" class="text-[10px] px-2.5 py-1 rounded-lg border font-semibold cursor-pointer text-cyan-400 bg-cyan-400/5 hover:bg-cyan-400/10 border-cyan-400/10 hover:border-cyan-400/30 shrink-0 transition-all">
+                  <button onclick="copyAddress('${coin.address}')" class="text-[10px] px-2.5 py-1 rounded-lg border font-semibold cursor-pointer text-slate-300 hover:text-white bg-white/5 hover:bg-white/10 border-slate-800 hover:border-slate-700 shrink-0 transition-all">
                     ${dict.copyBtn}
                   </button>
                 </div>
@@ -461,7 +484,7 @@
 
             <div>
               <button onclick="openQrModal('${coin.id}')" class="w-full py-2.5 rounded-xl bg-slate-950/40 hover:bg-slate-950 hover:text-white text-xs text-slate-400 hover:text-slate-100 border border-slate-900/80 hover:border-slate-800 transition-all flex items-center justify-center gap-2 cursor-pointer">
-                <svg class="w-3.5 h-3.5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <svg class="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
                 </svg>
                 <span>${dict.showQr}</span>
@@ -549,8 +572,8 @@
         btn.style.borderColor = "rgba(16, 185, 129, 0.3)";
         setTimeout(() => {
           btn.textContent = isFa ? "کپی آدرس" : "Copy";
-          btn.style.color = "#06b6d4";
-          btn.style.borderColor = "rgba(6, 182, 212, 0.2)";
+          btn.style.color = "";
+          btn.style.borderColor = "";
         }, 1500);
         showToast();
       });
