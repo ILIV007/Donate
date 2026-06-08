@@ -1,334 +1,577 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support ILIV007 - Crypto Donation Hub</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌀</text></svg>">
+  <title>Support ILIVIR3 — Decentralized Crypto Donation Hub</title>
+  
+  <!-- CSS Fonts and Tailwind Layer CDN style -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Vazirmatn:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            fa: ['"Vazirmatn"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #020617;
+    }
     
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Vazirmatn:wght@400;700&display=swap');
-        
-        :root {
-            --font-en: 'Plus Jakarta Sans', sans-serif;
-            --font-fa: 'Vazirmatn', sans-serif;
-        }
+    /* Astronomical dust pattern overlay */
+    .cosmic-dust {
+      background-image: radial-gradient(rgba(6, 182, 212, 0.05) 1.2px, transparent 0);
+      background-size: 32px 32px;
+    }
 
-        body {
-            font-family: var(--font-en);
-            background: radial-gradient(circle at 50% 30%, #03121e 0%, #010409 100%);
-            min-height: 100vh;
-            color: #f1f5f9;
-        }
+    /* Pure, stable, wobble-free rotation keyframes */
+    @keyframes event-horizon-spin {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
 
-        body.lang-fa {
-            font-family: var(--font-fa);
-        }
+    @keyframes accretion-flow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
 
-        /* افکت غبار فضایی پس‌زمینه */
-        .cosmic-dust {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: radial-gradient(rgba(6, 182, 212, 0.05) 1px, transparent 0);
-            background-size: 40px 40px;
-            z-index: -1;
-        }
+    @keyframes gravitational-pulse {
+      0%, 100% { transform: scale(1); opacity: 0.85; }
+      50% { transform: scale(1.03); opacity: 1; }
+    }
 
-        /* انیمیشن سیاه چاله */
-        .blackhole-core {
-            box-shadow: 0 0 40px 10px rgba(6, 182, 212, 0.4), 
-                        0 0 80px 20px rgba(8, 47, 73, 0.6);
-        }
+    .animate-accretion {
+      animation: accretion-flow 25s linear infinite;
+      will-change: transform;
+    }
 
-        .crypto-card {
-            background: rgba(10, 25, 41, 0.5);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(6, 182, 212, 0.08);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
+    .animate-horizon {
+      animation: event-horizon-spin 18s linear infinite;
+      will-change: transform;
+    }
 
-        .crypto-card:hover {
-            border-color: var(--hover-color);
-            box-shadow: 0 0 30px -5px var(--hover-shadow);
-            transform: translateY(-2px);
-        }
-    </style>
+    .animate-gravitational {
+      animation: gravitational-pulse 6s ease-in-out infinite;
+      will-change: transform, opacity;
+    }
+
+    .farsi-mode {
+      font-family: 'Vazirmatn', sans-serif !important;
+    }
+  </style>
 </head>
-<body class="py-8 px-4 relative transition-colors duration-300">
+<body class="min-h-screen text-slate-100 flex flex-col justify-between p-4 md:p-8 relative overflow-x-hidden select-none">
+  
+  <!-- Cosmic Grid Backdrop -->
+  <div class="cosmic-dust absolute inset-0 opacity-100 pointer-events-none"></div>
 
-    <div class="cosmic-dust"></div>
+  <!-- Auras blur shadows -->
+  <div class="absolute top-[-10%] left-[-15%] w-[450px] h-[450px] rounded-full bg-indigo-950/10 blur-[130px] pointer-events-none"></div>
+  <div class="absolute bottom-[-10%] right-[-15%] w-[450px] h-[450px] rounded-full bg-cyan-950/10 blur-[135px] pointer-events-none"></div>
 
-    <div class="max-w-4xl mx-auto flex justify-end mb-6">
-        <button onclick="toggleLanguage()" class="flex items-center gap-2 bg-slate-900/80 border border-cyan-500/30 hover:border-cyan-400 px-4 py-2 rounded-xl text-xs font-semibold text-cyan-400 shadow-lg transition-all">
-            <i class="fa-solid fa-language text-base"></i>
-            <span id="lang-btn-text">FA / فارسی</span>
-        </button>
+  <!-- Language switcher -->
+  <div class="max-w-4xl w-full mx-auto flex justify-end mb-8 z-30">
+    <button onclick="toggleLanguage()" class="flex items-center gap-2 bg-slate-900/85 border border-slate-800 hover:border-cyan-500/40 px-4 py-2 rounded-xl text-xs font-semibold text-[#06b6d4] shadow-lg shadow-black/40 backdrop-blur-md cursor-pointer transition-colors">
+      <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3 5h12M9 3v2m1.048 9.516a10.018 10.018 0 01-3.003-4.13m4.053 4.13a10.05 10.05 0 003.004-4.13m-6.007 0a9.98 9.98 0 00-3.003 4.13m4.053-4.13H3m14 11h-4m2.5-4.5s-2.5 1.5-2.5 4.5h5s0-3-2.5-4.5z" />
+      </svg>
+      <span id="lang-btn-text">فارسی / FA</span>
+    </button>
+  </div>
+
+  <div class="max-w-3xl w-full mx-auto flex-1 z-10">
+
+    <!-- Deep Astronomical Black Hole Header -->
+    <header class="text-center mb-10">
+      <div class="relative w-44 h-44 mx-auto mb-6 flex items-center justify-center select-none overflow-visible">
+        <!-- 1. Master Gravitationally Lensed High-Tech Cyber Black Hole SVG -->
+        <!-- 1. Master Gravitationally Lensed High-Tech Cyber Black Hole SVG (Now matching the official Grok logo shape) -->
+        <svg 
+          class="absolute w-44 h-44 drop-shadow-[0_0_35px_rgba(6,182,212,0.45)] select-none pointer-events-none z-10" 
+          viewBox="0 0 200 200" 
+          fill="none" 
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <!-- Space thermal lensing aura (high-energy cyan, blue, and deep space boundary) -->
+            <radialGradient id="haloGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.85" />
+              <stop offset="40%" stop-color="#3b82f6" stop-opacity="0.4" />
+              <stop offset="70%" stop-color="#ec4899" stop-opacity="0.15" />
+              <stop offset="100%" stop-color="#020617" stop-opacity="0" />
+            </radialGradient>
+            
+            <!-- Ultra-hot accretion disk gradient (cyber neon cyan to blue and deep violet) -->
+            <linearGradient id="accretionGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#3b82f6" />
+              <stop offset="25%" stop-color="#06b6d4" />
+              <stop offset="50%" stop-color="#ffffff" />
+              <stop offset="75%" stop-color="#ec4899" />
+              <stop offset="100%" stop-color="#3b82f6" />
+            </linearGradient>
+
+            <!-- Bright white-cyan highlight glow -->
+            <linearGradient id="slashGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#3b82f6" />
+              <stop offset="50%" stop-color="#ffffff" />
+              <stop offset="100%" stop-color="#06b6d4" />
+            </linearGradient>
+          </defs>
+
+          <!-- Underlying Space-Time Curvature Aura -->
+          <circle cx="100" cy="100" r="90" fill="url(#haloGlow)" />
+
+          <!-- Event Horizon Central Singularity (deep space void backdrop behind accretion structures) -->
+          <circle cx="100" cy="100" r="34" fill="#020617" />
+          <!-- Photon Sphere boundary orbits -->
+          <circle cx="100" cy="100" r="35" stroke="#06b6d4" stroke-width="0.8" stroke-dasharray="3 6" stroke-opacity="0.4" fill="none" />
+
+          <!-- Glowing Outline Layer for a high-intensity quantum flare -->
+          <g filter="blur(4px)" opacity="0.6">
+            <path 
+              d="M 48 152 C 30 140, 24 115, 24 96 A 76 76 0 0 1 135 45 L 118 62 A 56 56 0 0 0 44 96 C 44 115, 52 130, 62 138 C 54 145, 50 150, 48 152 Z" 
+              fill="url(#accretionGrad)" 
+            />
+            <path 
+              d="M 152 48 C 170 60, 176 85, 176 104 A 76 76 0 0 1 65 155 L 82 138 A 56 56 0 0 0 156 104 C 156 85, 148 70, 138 62 C 146 55, 150 50, 152 48 Z" 
+              fill="url(#accretionGrad)" 
+            />
+            <path 
+              d="M 24 176 C 65 145, 125 85, 176 24 C 132 75, 75 132, 24 176 Z" 
+              fill="url(#slashGrad)" 
+            />
+          </g>
+
+          <!-- Vector Masked Solid Premium Sharp Grok Logo Layer -->
+          <g>
+            <!-- 1. Top-Left Arc -->
+            <path 
+              d="M 48 152 C 30 140, 24 115, 24 96 A 76 76 0 0 1 135 45 L 118 62 A 56 56 0 0 0 44 96 C 44 115, 52 130, 62 138 C 54 145, 50 150, 48 152 Z" 
+              fill="url(#accretionGrad)" 
+            />
+            
+            <!-- 2. Bottom-Right Arc -->
+            <path 
+              d="M 152 48 C 170 60, 176 85, 176 104 A 76 76 0 0 1 65 155 L 82 138 A 56 56 0 0 0 156 104 C 156 85, 148 70, 138 62 C 146 55, 150 50, 152 48 Z" 
+              fill="url(#accretionGrad)" 
+            />
+
+            <!-- 3. High-Energy Central Slice (Accretion Blade/Slash passes in front cleanly) -->
+            <path 
+              d="M 24 176 C 65 145, 125 85, 176 24 C 132 75, 75 132, 24 176 Z" 
+              fill="url(#slashGrad)" 
+            />
+          </g>
+        </svg>
+
+        <!-- Quiet ambient core glow -->
+        <div class="absolute w-14 h-14 rounded-full bg-cyan-500/5 blur-xl pointer-events-none z-0"></div>
+      </div>
+
+      <h1 id="app-title" class="text-3xl md:text-4xl font-extrabold tracking-tight text-white drop-shadow-[0_2px_10px_rgba(6,182,212,0.4)] mb-4">
+        ILIVIR3 Support Hub
+      </h1>
+      <p id="app-subtitle" class="text-slate-300 text-xs md:text-sm max-w-xl mx-auto leading-relaxed px-4">
+        Welcome! Your support fuels my creative work, open-source projects, and learning journey. Thank you for being a wonderful part of this adventure. 🌀
+      </p>
+    </header>
+
+    <!-- Info & Security Accordion -->
+    <section class="mb-8 bg-slate-950/40 border border-slate-900 rounded-2xl overflow-hidden shadow-xl shadow-black/30 backdrop-blur-md">
+      <button onclick="toggleAccordion()" class="w-full p-4 flex justify-between items-center bg-slate-900/10 hover:bg-slate-900/20 transition-colors text-right cursor-pointer select-none">
+        <span class="font-semibold text-cyan-400 flex items-center gap-3 text-xs md:text-sm">
+          <svg class="w-5 h-5 text-cyan-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+          <span id="accordion-title">Complete Secure Transfer Guide</span>
+        </span>
+        <svg id="accordion-arrow" class="w-4 h-4 text-cyan-400 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+
+      <div id="accordion-content" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out border-slate-900 bg-slate-950/70">
+        <div id="accordion-list" class="p-5 text-slate-300 text-xs md:text-sm leading-relaxed space-y-4">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Crypto Donation Cards Grid -->
+    <main class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-12" id="cards-grid">
+      <!-- Populated by JS -->
+    </main>
+
+  </div>
+
+  <!-- Centered Floating Qr Code Modal Overlay -->
+  <div id="qr-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+    <div class="absolute inset-0 bg-slate-950/85 backdrop-blur-md cursor-pointer" onclick="closeQrModal()"></div>
+    <div class="bg-[#0b1526] border border-slate-800 rounded-3xl p-6 max-w-sm w-full shadow-2xl relative z-10 flex flex-col items-center text-center">
+      <button onclick="closeQrModal()" class="absolute top-4 right-4 text-slate-500 hover:text-slate-300 transition-all p-1 rounded-lg">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <div class="flex items-center gap-2.5 mb-4 mt-2 self-start text-left">
+        <div id="modal-coin-logo" class="w-9 h-9 rounded-xl bg-slate-900/60 flex items-center justify-center p-2 border border-slate-800 shrink-0"></div>
+        <div>
+          <h4 id="modal-coin-title" class="font-bold text-white text-sm"></h4>
+          <p id="modal-coin-network" class="text-[9px] text-cyan-400 font-mono tracking-wider"></p>
+        </div>
+      </div>
+
+      <div class="p-3.5 bg-white border border-slate-200 rounded-2xl shadow-xl flex items-center justify-center">
+        <img id="modal-qr-image" class="w-[140px] h-[140px]" alt="Donation QR Code" referrerpolicy="no-referrer">
+      </div>
+
+      <p id="modal-scan-prompt" class="text-[10px] text-slate-400 mt-4 leading-relaxed max-w-[240px]"></p>
+
+      <div class="bg-black/30 border border-slate-900 rounded-xl px-2.5 py-1.5 w-full mt-4 flex items-center justify-between gap-2 overflow-hidden">
+        <span id="modal-wallet-address" class="text-[10px] font-mono text-slate-400 truncate select-all text-left w-full"></span>
+        <button onclick="copyModalAddress()" id="modal-copy-btn" class="text-[9px] text-cyan-400 font-semibold bg-cyan-400/10 hover:bg-cyan-400/20 px-2.5 py-1 rounded-lg border border-cyan-400/20 shrink-0 transition-all">Copy</button>
+      </div>
+
+      <div class="flex gap-2.5 w-full mt-4">
+        <a id="modal-explorer-link" href="#" target="_blank" class="flex-1 py-2 px-3 bg-cyan-400/5 hover:bg-cyan-400/10 border border-cyan-400/20 text-[#06b6d4] hover:text-[#22d3ee] rounded-xl text-xs font-semibold flex items-center justify-center gap-1.5 transition-all text-center">
+          <svg class="w-3.5 h-3.5 text-[#06b6d4]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+          <span>Verify on Explorer</span>
+        </a>
+        <button onclick="closeQrModal()" id="modal-close-btn" class="px-4 py-2 bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-400 hover:text-slate-200 rounded-xl text-xs font-semibold">Close</button>
+      </div>
     </div>
+  </div>
 
-    <div class="max-w-4xl mx-auto">
-        
-        <header class="text-center mb-14">
-            <div class="relative w-32 h-32 mx-auto mb-6 flex items-center justify-center select-none">
-                <div class="absolute w-32 h-32 rounded-full border-2 border-dashed border-cyan-500/20 animate-spin" style="animation-duration: 20s;"></div>
-                <div class="absolute w-24 h-24 rounded-full border border-t-cyan-400 border-b-cyan-500/40 border-r-transparent border-l-transparent animate-spin" style="animation-duration: 4s;"></div>
-                <div class="absolute w-16 h-16 bg-cyan-400/20 rounded-full blur-xl animate-pulse"></div>
-                <div class="blackhole-core w-14 h-14 bg-black rounded-full z-10 border border-cyan-500/40"></div>
+  <!-- Toast notification banner -->
+  <div id="toast" class="fixed bottom-4 right-4 bg-slate-900 border border-emerald-500/40 text-emerald-400 px-4 py-2.5 rounded-xl text-xs shadow-xl flex items-center gap-2 transform translate-y-12 opacity-0 transition-all duration-300 pointer-events-none z-50">
+    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+    </svg>
+    <span id="toast-text">Address copied successfully</span>
+  </div>
+
+  <!-- Footer block -->
+  <footer class="text-center mt-12 mb-3 z-10 space-y-1.5">
+    <p id="footer-portal-text" class="text-[10px] text-slate-600 uppercase tracking-widest font-mono">// Decentralized Personal Support Portal — ILIVIR3</p>
+    <p id="footer-made-text" class="text-[8px] text-slate-700 font-medium flex items-center justify-center gap-1.5">
+      <span>Designed with gratitude & respect for supporters</span>
+      <svg class="w-2.5 h-2.5 text-rose-800 fill-rose-800 animate-pulse" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+      </svg>
+    </p>
+  </footer>
+
+  <!-- JavaScript application state logic -->
+  <script>
+    let currentLanguage = 'en';
+    let activeAccordion = false;
+    let currentModalCoinId = null;
+
+    const enData = {
+      title: "ILIVIR3 Support Hub",
+      subtitle: "Welcome! Your support fuels my creative work, open-source projects, and learning journey. Thank you for being a wonderful part of this adventure. 🌀",
+      accTitle: "How to Support (Step-by-Step Easy Guide)",
+      accDesc: [
+        { subtitle: "1. Select Currency & Copy Wallet Address", text: "Choose your preferred cryptocurrency below. Click the 'Copy' button to grab the exact address, or tap 'Show QR Code' to scan it securely directly with your mobile wallet app." },
+        { subtitle: "2. Set the Correct Network", text: "In your wallet, ensure your withdrawal network matches the specified network on the card (e.g., TRC20 for Tether/USDT and TRON/TRX, or BSC/BEP20 for BNB). Using an incorrect network causes irreversible loss of funds." },
+        { subtitle: "3. Cover Exchange Gas Fees", text: "If you are transferring directly from exchanges (like Binance, KuCoin, Coinbase etc.), verify their minimum transfer limit and adjust your send amount so it accounts for their checkout fees." },
+        { subtitle: "4. Wait for Network Confirmation", text: "Once transmitted, the transaction usually takes 1 to 3 minutes to confirm on the blockchain ledger. Everything is completely peer-to-peer and decentralized – no signup or private details are tracked." }
+      ],
+      copyBtn: "Copy",
+      copiedBtn: "Copied!",
+      showQr: "Show QR Code",
+      hideQr: "Close",
+      networkLabel: "Network",
+      addressLabel: "Wallet Address",
+      scanPrompt: "Scan this QR with your crypto wallet to send support safely.",
+      footerText: "Decentralized Personal Support Portal",
+      madeWithLove: "Designed with gratitude & respect for supporters",
+      explorerLink: "Verify on Explorer",
+      toastSuccess: "Address copied successfully!"
+    };
+
+    const faData = {
+      title: "حمایت از ILIVIR3",
+      subtitle: "سلام دوست من! حمایت‌های گرم شما، سوخت اصلی و انگیزه من برای توسعه کدهای جدید و ادامه پروژه‌های منبع‌باز است. صمیمانه سپاسگزار همراهی شما هستم. 🌀",
+      accTitle: "راهنمای گام‌به‌گام برای حمایت رمزارزی بسیار آسان",
+      accDesc: [
+        { subtitle: "۱. انتخاب ارز و کپی کردن آدرس", text: "ارز مورد نظر خود را در بخش زیر انتخاب کرده، روی دکمه «کپی آدرس» کلیک کنید تا کپی شود. همچنین با زدن روی «نمایش کد QR» می‌توانید مستقیماً با اپلیکیشن کیف پول خود آن را اسکن کنید." },
+        { subtitle: "۲. تنظیم دقیق شبکه فرستنده", text: "هنگام انتقال، مطمئن شوید شبکه برداشت ولت خود را دقیقاً بر روی شبکه نوشته شده روی کارت درج کنید (مثلاً TRC20 برای تتر و ترون، یا BSC/BEP20 برای بایننس‌کوین). انتخاب شبکه اشتباه دارایی را برای همیشه از بین می‌برد." },
+        { subtitle: "۳. احتساب حداقل تراکنش صرافی‌ها", text: "اگر مستقیم از صرافی‌ها (مانند نوبیتکس، والکس، بایننس و...) ارسال انجام می‌دهید، دقت کنید که صرافی کارمزد انتقال خود را کسر می‌کند. توصیه می‌شود این مقدار جزئی کارمزد را روی مبلغ ارسالی خود لحاظ کنید." },
+        { subtitle: "۴. نهایی‌سازی در بلاکچین", text: "بعد از تایید تراکنش در ولت کار بر حسب ترافیک جهانی بلاکچین معمولاً ۱ الی ۳ دقیقه طول می‌کشد تا رمزارز فرود آید. هیچ اطلاعات هویتی یا ثبت‌نامی رصد نمی‌شود و عملیات ۱۰۰٪ غیرمتمرکز است." }
+      ],
+      copyBtn: "کپی آدرس",
+      copiedBtn: "کپی شد !",
+      showQr: "نمایش کد QR",
+      hideQr: "بستن",
+      networkLabel: "شبکه بلاکچین",
+      addressLabel: "آدرس کیف پول",
+      scanPrompt: "این کد QR را اسکن کنید تا آدرس مستقیماً فراخوانی شود.",
+      footerText: "درگاه غیرمتمرکز حمایت‌های صمیمانه",
+      madeWithLove: "طراحی شده با نهایت احترام و قدردانی برای حامیان عزیز",
+      explorerLink: "مشاهده در بلاکچین",
+      toastSuccess: "آدرس کیف پول با موفقیت کپی شد!"
+    };
+
+    const coins = [
+      {
+        id: "btc",
+        name: "Bitcoin",
+        symbol: "BTC",
+        network: "Native SegWit",
+        address: "bc1qu280unm2432jxhufgekg88hu62pyg28dpfhw4m",
+        explorerUrl: "https://blockstream.info/address/bc1qu280unm2432jxhufgekg88hu62pyg28dpfhw4m",
+        themeColor: "#f7931a",
+        logo: `<svg class="w-8 h-8 drop-shadow-[0_0_6px_rgba(247,147,26,0.25)]" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="50" fill="#F7931A"/>
+          <path d="M66.1 48.4c.9-5.8-3.6-8.9-9.6-11l2-7.8-4.81-1.2-1.9 7.7c-1.3-.3-2.6-.6-3.8-.9l1.9-7.8-4.81-1.2-2 7.9c-1-.2-2.1-.5-3.1-.7l.01-.1-6.64-1.66-1.28 5.1s3.58.82 3.51.87c1.95.49 2.3 1.78 2.24 2.8l-2.25 9c.13.03.31.08.5.15l-.5-.13-3.14 12.6c-.24.59-.85 1.48-2.22 1.14 0 0-3.51-.88-3.51-.88l-2.4 5.51 6.27 1.56c1.17.29 2.31.6 3.44.89l-2 8.01 4.8 1.2 2-8.01c1.3.3 2.56.7 3.8.99l-2 7.9 4.8 1.2 2.01-8.1c8.2 1.55 14.37.93 16.97-6.47 2.1-5.96-.1-9.4-4.39-11.64 3.12-.72 5.47-2.77 6.1-7zm-10.9 15.4c-1.49 5.96-11.53 2.74-14.79 1.93l2.64-10.58c3.26.81 13.68 2.42 12.15 8.65zm2.1-15.5c-1.36 5.45-9.74 2.69-12.46 2.01l2.4-9.63c2.72.68 11.45 1.96 10.06 7.62z" fill="white"/>
+        </svg>`
+      },
+      {
+        id: "bnb",
+        name: "BNB",
+        symbol: "BNB",
+        network: "BSC (BEP20)",
+        address: "0xe4f0c80ab473ef3680cee8b78b8f7bfc071fb6dd",
+        explorerUrl: "https://bscscan.com/address/0xe4f0c80ab473ef3680cee8b78b8f7bfc071fb6dd",
+        themeColor: "#f3ba2f",
+        logo: `<svg class="w-8 h-8 drop-shadow-[0_0_6px_rgba(243,186,47,0.25)]" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="48" fill="#12161A" stroke="#F3BA2F" stroke-width="4"/>
+          <path d="M50 38L62 50L50 62L38 50Z M50 12L68 30L61 37L50 26L39 37L32 30Z M50 88L32 70L39 63L50 74L61 63L68 70Z M12 50L30 32L37 39L26 50L37 61L30 68Z M88 50L70 68L63 61L74 50L63 39L70 32Z" fill="#F3BA2F"/>
+        </svg>`
+      },
+      {
+        id: "usdt",
+        name: "Tether",
+        symbol: "USDT",
+        network: "TRC20",
+        address: "TCYgEojrmu5qvvHoFxEi21g8g7ZVtuC28s",
+        explorerUrl: "https://tronscan.org/#/address/TCYgEojrmu5qvvHoFxEi21g8g7ZVtuC28s",
+        themeColor: "#26a17b",
+        logo: `<svg class="w-8 h-8 drop-shadow-[0_0_6px_rgba(38,161,123,0.25)]" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="50" fill="#26A17B"/>
+          <path d="M50 18c15.5 0 28 6.3 28 14s-12.5 14-28 14-28-6.3-28-14 12.5-14 28-14zm0 2c-12.7 0-23 4.8-23 10.7a7.7 7.7 0 00.3 1.9C31.5 39 40 43.1 50 43.1s18.5-4.1 22.7-10.5c.2-.6.3-1.2.3-1.9C73 24.8 62.7 20 50 20zm-5.7 13.8v7.2H32v11h12.3v27h11.4v-27H68v-11H55.7v-7.2h-5.7z" fill="white"/>
+        </svg>`
+      },
+      {
+        id: "trx",
+        name: "TRON",
+        symbol: "TRX",
+        network: "TRC20",
+        address: "TCYgEojrmu5qvvHoFxEi21g8g7ZVtuC28s",
+        explorerUrl: "https://tronscan.org/#/address/TCYgEojrmu5qvvHoFxEi21g8g7ZVtuC28s",
+        themeColor: "#ef0027",
+        logo: `<svg class="w-8 h-8 drop-shadow-[0_0_6px_rgba(239,0,39,0.25)]" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="50" fill="#EF0027"/>
+          <path d="M50 18L82 66L53 50V18z" fill="white" opacity="0.95"/>
+          <path d="M50 18L18 66L47 50V18z" fill="#E5E5E5"/>
+          <path d="M18 66l32 16V50L18 66z" fill="#CCCCCC"/>
+          <path d="M82 66l-32 16V50l32 16z" fill="#B3B3B3"/>
+        </svg>`
+      }
+    ];
+
+    function updateDOM() {
+      const isFa = currentLanguage === 'fa';
+      const dict = isFa ? faData : enData;
+
+      // Adjust text direction / font on whole html element
+      document.documentElement.dir = isFa ? 'rtl' : 'ltr';
+      document.documentElement.lang = currentLanguage;
+      if (isFa) {
+        document.body.classList.add('farsi-mode');
+      } else {
+        document.body.classList.remove('farsi-mode');
+      }
+
+      // Headers text
+      document.getElementById('app-title').textContent = dict.title;
+      document.getElementById('app-subtitle').textContent = dict.subtitle;
+      document.getElementById('lang-btn-text').textContent = isFa ? "English / EN" : "فارسی / FA";
+
+      // Accordion
+      document.getElementById('accordion-title').textContent = dict.accTitle;
+      
+      let accordionHTML = '';
+      dict.accDesc.forEach(desc => {
+        accordionHTML += `
+          <div class="space-y-1">
+            <h4 class="font-bold text-cyan-400 flex items-center gap-2">
+              <span class="text-xs select-none">✦</span>
+              <span>${desc.subtitle}</span>
+            </h4>
+            <p class="text-slate-400 pl-4 md:pl-5 font-normal text-xs leading-relaxed">
+              ${desc.text}
+            </p>
+          </div>
+        `;
+      });
+      document.getElementById('accordion-list').innerHTML = accordionHTML;
+
+      // Build cards
+      let cardsHTML = '';
+      coins.forEach(coin => {
+        cardsHTML += `
+          <div class="bg-[#0a1526]/40 hover:bg-[#0a1526]/60 backdrop-blur-md rounded-2xl p-5 border border-slate-900/80 transition-all duration-300 flex flex-col justify-between">
+            <div>
+              <div class="flex justify-between items-center mb-4">
+                <div class="flex items-center gap-3">
+                  <div class="w-12 h-12 rounded-xl bg-slate-950/50 flex items-center justify-center p-2 border border-slate-800">
+                    ${coin.logo}
+                  </div>
+                  <div>
+                    <h3 class="font-bold text-white text-sm tracking-wide flex items-center gap-1.5 leading-none">
+                      ${coin.name} <span class="text-xs text-slate-500 font-normal">(${coin.symbol})</span>
+                    </h3>
+                    <div class="flex items-center gap-1 mt-1">
+                      <span class="text-[9px] text-slate-400 font-medium">${dict.networkLabel}:</span>
+                      <span class="text-[8px] px-1.5 py-0.5 rounded font-mono uppercase font-bold border" style="color: ${coin.themeColor}; background-color: ${coin.themeColor}0F; border-color: ${coin.themeColor}22">
+                        ${coin.network}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <span class="block text-[10px] text-slate-500 mb-1.5 font-medium">${dict.addressLabel}:</span>
+                <div class="bg-black/40 rounded-xl p-2.5 flex items-center justify-between gap-2 border border-slate-900/60">
+                  <span class="text-xs font-mono text-slate-300 truncate tracking-wider select-all">${coin.address}</span>
+                  <button onclick="copyAddress('${coin.address}')" class="text-[10px] px-2.5 py-1 rounded-lg border font-semibold cursor-pointer text-cyan-400 bg-cyan-400/5 hover:bg-cyan-400/10 border-cyan-400/10 hover:border-cyan-400/30 shrink-0 transition-all">
+                    ${dict.copyBtn}
+                  </button>
+                </div>
+              </div>
             </div>
-            
-            <h1 id="txt-title" class="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-200 to-cyan-400 bg-clip-text text-transparent mb-3">ILIV007</h1>
-            <p id="txt-subtitle" class="text-slate-400 text-sm max-w-md mx-auto leading-relaxed">Fueling innovation through decentralized support. Choose a network below to contribute.</p>
-        </header>
 
-        <section class="mb-8 bg-slate-950/40 border border-slate-800 rounded-2xl overflow-hidden shadow-xl transition-all">
-            <button onclick="toggleAccordion()" class="w-full p-5 flex justify-between items-center bg-cyan-950/5 hover:bg-cyan-950/10 transition-colors text-left" id="accordion-btn">
-                <span class="font-semibold text-cyan-400 flex items-center gap-3 text-sm md:text-base">
-                    <i class="fa-solid fa-shield-halved text-cyan-500"></i>
-                    <span id="txt-acc-title">Important Guidelines & Transfer Verification</span>
-                </span>
-                <i id="accordion-icon" class="fa-solid fa-chevron-down text-cyan-500 transition-transform duration-300"></i>
-            </button>
-            <div id="accordion-content" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-                <div class="p-5 text-slate-400 text-sm leading-relaxed border-t border-slate-900 bg-slate-950/60 space-y-3" id="txt-acc-desc">
-                    <p>• <strong>Network Alignment:</strong> Please ensure your wallet matches the specified network (e.g., TRC20 for USDT). Sending assets to the wrong network will result in permanent loss.</p>
-                    <p>• <strong>Automation:</strong> QR codes are dynamically generated and verified. Once the transaction hits the blockchain explorer, it is securely received.</p>
-                    <p>• <strong>Privacy & Security:</strong> Blockchain transactions are completely decentralized and safe. Thank you for supporting my development journey!</p>
-                </div>
+            <div>
+              <button onclick="openQrModal('${coin.id}')" class="w-full py-2.5 rounded-xl bg-slate-950/40 hover:bg-slate-950 hover:text-white text-xs text-slate-400 hover:text-slate-100 border border-slate-900/80 hover:border-slate-800 transition-all flex items-center justify-center gap-2 cursor-pointer">
+                <svg class="w-3.5 h-3.5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
+                </svg>
+                <span>${dict.showQr}</span>
+              </button>
             </div>
-        </section>
+          </div>
+        `;
+      });
+      document.getElementById('cards-grid').innerHTML = cardsHTML;
 
-        <main class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      // Footer texts
+      document.getElementById('footer-portal-text').textContent = `// ${dict.footerText} — ILIVIR3`;
+      document.getElementById('footer-made-text').firstElementChild.textContent = dict.madeWithLove;
 
-            <div class="crypto-card rounded-2xl p-6 flex flex-col justify-between" style="--hover-color: #f7931a; --hover-shadow: rgba(247,147,26,0.15);">
-                <div>
-                    <div class="flex justify-between items-center mb-5">
-                        <div class="flex items-center gap-3">
-                            <div class="w-11 h-11 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-500 text-xl">
-                                <i class="fa-brands fa-bitcoin text-2xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-white tracking-wide">Bitcoin</h3>
-                                <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/10 text-amber-500 font-mono uppercase border border-amber-500/20">Native SegWit</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-black/40 rounded-xl p-3 flex items-center justify-between gap-2 border border-slate-900 mb-4">
-                        <span class="text-xs font-mono text-slate-400 truncate tracking-wider" id="addr-btc">bc1qu280unm2432jxhufgekg88hu62pyg28dpfhw4m</span>
-                        <button onclick="copyAddress('addr-btc', this)" class="text-xs text-cyan-400 font-semibold bg-cyan-950/40 hover:bg-cyan-950/90 px-3 py-1.5 rounded-lg border border-cyan-500/20 transition-all shrink-0 btn-copy">Copy</button>
-                    </div>
-                </div>
-                <div>
-                    <button onclick="toggleQR('qr-btc', 'bc1qu280unm2432jxhufgekg88hu62pyg28dpfhw4m')" class="w-full py-2 rounded-xl bg-slate-900/50 hover:bg-slate-900 hover:text-white text-xs text-slate-400 border border-slate-800 transition-all flex items-center justify-center gap-2 btn-qr">Show QR Code</button>
-                    <div id="qr-btc" class="hidden flex justify-center pt-4"></div>
-                </div>
-            </div>
+      // If Modal is active, update modal strings
+      if (currentModalCoinId) {
+        updateModalStrings();
+      }
+    }
 
-            <div class="crypto-card rounded-2xl p-6 flex flex-col justify-between" style="--hover-color: #f3ba2f; --hover-shadow: rgba(243,186,47,0.15);">
-                <div>
-                    <div class="flex justify-between items-center mb-5">
-                        <div class="flex items-center gap-3">
-                            <div class="w-11 h-11 rounded-xl bg-yellow-500/10 flex items-center justify-center">
-                                <svg class="w-6 h-6 text-yellow-500" viewBox="0 0 24 24" fill="currentColor"><path d="M16.624 13.9202l-4.624 4.619-4.624-4.619 4.624-4.619 4.624 4.619zm4.626-1.9202l-2.701-2.701-1.925 1.925 2.701 2.701 1.925-1.925zm-9.25 9.243l-2.701-2.701-1.925 1.925 2.701 2.701 1.925-1.925zm0-18.486L9.299 5.458l1.925 1.925 2.701-2.701-1.925-1.925zM2.75 12l1.925-1.925L7.376 12l-2.701 2.701L2.75 12zm9.25 2.839l-2.842-2.839 2.842-2.839 2.842 2.839-2.842 2.839z"/></svg>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-white tracking-wide">BNB</h3>
-                                <span class="text-[10px] px-2 py-0.5 rounded bg-yellow-500/10 text-yellow-500 font-mono uppercase border border-yellow-500/20">BSC (BEP20)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-black/40 rounded-xl p-3 flex items-center justify-between gap-2 border border-slate-900 mb-4">
-                        <span class="text-xs font-mono text-slate-400 truncate tracking-wider" id="addr-bnb">0xe4f0c80ab473ef3680cee8b78b8f7bfc071fb6dd</span>
-                        <button onclick="copyAddress('addr-bnb', this)" class="text-xs text-cyan-400 font-semibold bg-cyan-950/40 hover:bg-cyan-950/90 px-3 py-1.5 rounded-lg border border-cyan-500/20 transition-all shrink-0 btn-copy">Copy</button>
-                    </div>
-                </div>
-                <div>
-                    <button onclick="toggleQR('qr-bnb', '0xe4f0c80ab473ef3680cee8b78b8f7bfc071fb6dd')" class="w-full py-2 rounded-xl bg-slate-900/50 hover:bg-slate-900 hover:text-white text-xs text-slate-400 border border-slate-800 transition-all flex items-center justify-center gap-2 btn-qr">Show QR Code</button>
-                    <div id="qr-bnb" class="hidden flex justify-center pt-4"></div>
-                </div>
-            </div>
+    function toggleLanguage() {
+      currentLanguage = (currentLanguage === 'en') ? 'fa' : 'en';
+      updateDOM();
+    }
 
-            <div class="crypto-card rounded-2xl p-6 flex flex-col justify-between" style="--hover-color: #ef0027; --hover-shadow: rgba(239,0,39,0.15);">
-                <div>
-                    <div class="flex justify-between items-center mb-5">
-                        <div class="flex items-center gap-3">
-                            <div class="w-11 h-11 rounded-xl bg-red-500/10 flex items-center justify-center">
-                                <svg class="w-6 h-6 text-red-500" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M24 12L12.16 0 0 12l1.91 1.63L12 3.11l10.09 10.52L24 12zm-12 3.56L3.92 14 12 24l8.08-10L12 15.56z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-white tracking-wide">TRON (TRX)</h3>
-                                <span class="text-[10px] px-2 py-0.5 rounded bg-red-500/10 text-red-500 font-mono uppercase border border-red-500/20">TRC20</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-black/40 rounded-xl p-3 flex items-center justify-between gap-2 border border-slate-900 mb-4">
-                        <span class="text-xs font-mono text-slate-400 truncate tracking-wider" id="addr-trx">TCYgEojrmu5qvvHoFxEi21g8g7ZVtuC28s</span>
-                        <button onclick="copyAddress('addr-trx', this)" class="text-xs text-cyan-400 font-semibold bg-cyan-950/40 hover:bg-cyan-950/90 px-3 py-1.5 rounded-lg border border-cyan-500/20 transition-all shrink-0 btn-copy">Copy</button>
-                    </div>
-                </div>
-                <div>
-                    <button onclick="toggleQR('qr-trx', 'TCYgEojrmu5qvvHoFxEi21g8g7ZVtuC28s')" class="w-full py-2 rounded-xl bg-slate-900/50 hover:bg-slate-900 hover:text-white text-xs text-slate-400 border border-slate-800 transition-all flex items-center justify-center gap-2 btn-qr">Show QR Code</button>
-                    <div id="qr-trx" class="hidden flex justify-center pt-4"></div>
-                </div>
-            </div>
+    function toggleAccordion() {
+      activeAccordion = !activeAccordion;
+      const content = document.getElementById('accordion-content');
+      const arrow = document.getElementById('accordion-arrow');
+      if (activeAccordion) {
+        content.style.maxHeight = content.scrollHeight + "px";
+        arrow.style.transform = "rotate(180deg)";
+      } else {
+        content.style.maxHeight = "0";
+        arrow.style.transform = "rotate(0deg)";
+      }
+    }
 
-            <div class="crypto-card rounded-2xl p-6 flex flex-col justify-between" style="--hover-color: #26a17b; --hover-shadow: rgba(38,161,123,0.15);">
-                <div>
-                    <div class="flex justify-between items-center mb-5">
-                        <div class="flex items-center gap-3">
-                            <div class="w-11 h-11 rounded-xl bg-emerald-500/10 flex items-center justify-center">
-                                <svg class="w-6 h-6 text-emerald-500" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M18.25 6.425v-3.75H24V0H0v2.675h5.75v3.75C2.35 7.15 0 9.875 0 13.075c0 3.2 2.35 5.925 5.75 6.65v4.275h12.5v-4.275c3.4-.725 5.75-3.45 5.75-6.65 0-3.2-2.35-5.925-5.75-6.65zM12 17.5c-2.9 0-5.25-1.95-5.25-4.375s2.35-4.375 5.25-4.375 5.25 1.95 5.25 4.375S14.9 17.5 12 17.5z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-white tracking-wide">Tether (USDT)</h3>
-                                <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-500 font-mono uppercase border border-emerald-500/20">TRC20</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-black/40 rounded-xl p-3 flex items-center justify-between gap-2 border border-slate-900 mb-4">
-                        <span class="text-xs font-mono text-slate-400 truncate tracking-wider" id="addr-usdt">TCYgEojrmu5qvvHoFxEi21g8g7ZVtuC28s</span>
-                        <button onclick="copyAddress('addr-usdt', this)" class="text-xs text-cyan-400 font-semibold bg-cyan-950/40 hover:bg-cyan-950/90 px-3 py-1.5 rounded-lg border border-cyan-500/20 transition-all shrink-0 btn-copy">Copy</button>
-                    </div>
-                </div>
-                <div>
-                    <button onclick="toggleQR('qr-usdt', 'TCYgEojrmu5qvvHoFxEi21g8g7ZVtuC28s')" class="w-full py-2 rounded-xl bg-slate-900/50 hover:bg-slate-900 hover:text-white text-xs text-slate-400 border border-slate-800 transition-all flex items-center justify-center gap-2 btn-qr">Show QR Code</button>
-                    <div id="qr-usdt" class="hidden flex justify-center pt-4"></div>
-                </div>
-            </div>
+    function openQrModal(id) {
+      currentModalCoinId = id;
+      const coin = coins.find(c => c.id === id);
+      if (!coin) return;
 
-         </main>
+      document.getElementById('modal-coin-logo').innerHTML = coin.logo;
+      document.getElementById('modal-coin-title').innerHTML = `${coin.name} <span class="text-[10px] text-slate-500 font-normal">(${coin.symbol})</span>`;
+      document.getElementById('modal-coin-network').textContent = coin.network;
+      document.getElementById('modal-wallet-address').textContent = coin.address;
+      document.getElementById('modal-qr-image').src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${coin.address}&color=020617&bgcolor=ffffff`;
+      document.getElementById('modal-explorer-link').href = coin.explorerUrl;
 
-        <footer class="text-center mt-16 text-[10px] text-slate-600 tracking-widest uppercase">
-            // Space Core Portal — ILIV007
-        </footer>
-    </div>
+      updateModalStrings();
 
-    <script>
-        let currentLang = 'en';
+      const modal = document.getElementById('qr-modal');
+      modal.classList.remove('hidden');
+    }
 
-        const dictionary = {
-            en: {
-                title: "ILIV007",
-                subtitle: "Fueling innovation through decentralized support. Choose a network below to contribute securely.",
-                accTitle: "Important Guidelines & Transfer Verification",
-                accDesc: `<p>• <strong>Network Alignment:</strong> Please ensure your crypto wallet matches the specified network (e.g., TRC20 for USDT). Sending tokens via an unsupported network will result in permanent loss of funds.</p>
-                          <p>• <strong>Verification Process:</strong> The platform dynamically monitors addresses. Once your transaction receives standard blockchain block confirmations, it will be automatically consolidated.</p>
-                          <p>• <strong>Transparency & Privacy:</strong> Decentralized donations guarantee end-to-end cryptography. Thank you for empowering my engineering and deployment workflows!</p>`,
-                copy: "Copy",
-                copied: "Copied!",
-                showQr: "Show QR Code",
-                hideQr: "Hide QR Code",
-                btnLang: "FA / فارسی"
-            },
-            fa: {
-                title: "ILIV007",
-                subtitle: "حمایت از توسعه پروژه‌ها از طریق درگاه‌های غیرمتمرکز کریپتو. برای واریز امن، یکی از شبکه‌های زیر را انتخاب کنید.",
-                accTitle: "دستورالعمل‌های مهم و تاییدیه انتقال وجه",
-                accDesc: `<p>• <strong>تطابق دقیق شبکه:</strong> لطفاً حتماً مطمئن شوید که شبکه انتخابی در کیف پول شما با شبکه قید شده روی کارت (مثلاً TRC20 برای تتر) یکی باشد. انتقال در شبکه اشتباه منجر به از دست رفتن همیشگی دارایی می‌شود.</p>
-                          <p>• <strong>فرآیند پردازش تراکنش:</strong> این پلتفرم آدرس‌ها را به صورت پویا مانیتور می‌کند. پس از تایید تراکنش در اکسپلورر بلاکچین، دارایی به طور خودکار دریافت و ثبت خواهد شد.</p>
-                          <p>• <strong>امنیت و حریم خصوصی:</strong> تراکنش‌های رمزنگاری شده غیرمتمرکز، امنیت و ناشناس بودن کامل هردوطرف را تضمین می‌کند. از اینکه فرآیند توسعه و مهندسی من را حمایت می‌کنید سپاسگزارم!</p>`,
-                copy: "کپی آدرس",
-                copied: "کپی شد!",
-                showQr: "نمایش کد QR",
-                hideQr: "پنهان‌سازی QR",
-                btnLang: "EN / انگلیسی"
-            }
-        };
+    function updateModalStrings() {
+      const isFa = currentLanguage === 'fa';
+      const dict = isFa ? faData : enData;
 
-        function toggleLanguage() {
-            currentLang = currentLang === 'en' ? 'fa' : 'en';
-            const langData = dictionary[currentLang];
-            
-            // اعمال دایرکشن و استایل‌های بدنه
-            if (currentLang === 'fa') {
-                document.documentElement.setAttribute('dir', 'rtl');
-                document.documentElement.setAttribute('lang', 'fa');
-                document.body.classList.add('lang-fa');
-                document.getElementById('accordion-btn').style.textAlign = 'right';
-            } else {
-                document.documentElement.setAttribute('dir', 'ltr');
-                document.documentElement.setAttribute('lang', 'en');
-                document.body.classList.remove('lang-fa');
-                document.getElementById('accordion-btn').style.textAlign = 'left';
-            }
+      document.getElementById('modal-scan-prompt').textContent = dict.scanPrompt;
+      document.getElementById('modal-explorer-link').lastElementChild.textContent = dict.explorerLink;
+      document.getElementById('modal-close-btn').textContent = dict.hideQr;
+      document.getElementById('modal-copy-btn').textContent = dict.copyBtn;
+    }
 
-            // به‌روزرسانی متن‌ها
-            document.getElementById('txt-title').innerText = langData.title;
-            document.getElementById('txt-subtitle').innerText = langData.subtitle;
-            document.getElementById('txt-acc-title').innerText = langData.accTitle;
-            document.getElementById('txt-acc-desc').innerHTML = langData.accDesc;
-            document.getElementById('lang-btn-text').innerText = langData.btnLang;
+    function closeQrModal() {
+      currentModalCoinId = null;
+      document.getElementById('qr-modal').classList.add('hidden');
+    }
 
-            // به روز رسانی دکمه‌های کپی و QR به زبان جدید
-            document.querySelectorAll('.btn-copy').forEach(btn => {
-                if(!btn.disabled) btn.innerText = langData.copy;
-            });
-            document.querySelectorAll('.btn-qr').forEach(btn => {
-                const isHidden = btn.nextElementSibling.classList.contains('hidden');
-                btn.innerHTML = `<i class="fa-solid fa-qrcode"></i> ${isHidden ? langData.showQr : langData.hideQr}`;
-            });
+    function copyAddress(address) {
+      navigator.clipboard.writeText(address).then(() => {
+        showToast();
+      });
+    }
 
-            // بازنشانی سایز آکاردئون در صورت باز بودن
-            const content = document.getElementById('accordion-content');
-            if (content.style.maxHeight && content.style.maxHeight !== '0px') {
-                content.style.maxHeight = content.scrollHeight + 'px';
-            }
-        }
+    function copyModalAddress() {
+      const address = document.getElementById('modal-wallet-address').textContent;
+      navigator.clipboard.writeText(address).then(() => {
+        const btn = document.getElementById('modal-copy-btn');
+        const isFa = currentLanguage === 'fa';
+        btn.textContent = isFa ? "کپی شد !" : "Copied!";
+        btn.style.color = "#10b981";
+        btn.style.borderColor = "rgba(16, 185, 129, 0.3)";
+        setTimeout(() => {
+          btn.textContent = isFa ? "کپی آدرس" : "Copy";
+          btn.style.color = "#06b6d4";
+          btn.style.borderColor = "rgba(6, 182, 212, 0.2)";
+        }, 1500);
+        showToast();
+      });
+    }
 
-        function toggleAccordion() {
-            const content = document.getElementById('accordion-content');
-            const icon = document.getElementById('accordion-icon');
-            
-            if (content.style.maxHeight && content.style.maxHeight !== '0px') {
-                content.style.maxHeight = '0px';
-                icon.style.transform = 'rotate(0deg)';
-            } else {
-                content.style.maxHeight = content.scrollHeight + 'px';
-                icon.style.transform = 'rotate(180deg)';
-            }
-        }
+    function showToast() {
+      const toast = document.getElementById('toast');
+      const isFa = currentLanguage === 'fa';
+      document.getElementById('toast-text').textContent = isFa ? "آدرس با موفقیت کپی شد!" : "Wallet address copied successfully!";
+      
+      toast.classList.remove('translate-y-12', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
 
-        function copyAddress(elementId, button) {
-            const textToCopy = document.getElementById(elementId).innerText;
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                button.innerText = dictionary[currentLang].copied;
-                button.disabled = true;
-                button.classList.add('bg-emerald-950/80', 'text-emerald-400', 'border-emerald-500/40');
-                
-                setTimeout(() => {
-                    button.innerText = dictionary[currentLang].copy;
-                    button.disabled = false;
-                    button.classList.remove('bg-emerald-950/80', 'text-emerald-400', 'border-emerald-500/40');
-                }, 2000);
-            });
-        }
+      setTimeout(() => {
+        toast.classList.add('translate-y-12', 'opacity-0');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 2500);
+    }
 
-        function toggleQR(containerId, address) {
-            const container = document.getElementById(containerId);
-            const button = container.previousElementSibling.querySelector('.btn-qr') || container.previousElementSibling;
-            
-            if (!container.classList.contains('hidden')) {
-                container.classList.add('hidden');
-                button.innerHTML = `<i class="fa-solid fa-qrcode"></i> ${dictionary[currentLang].showQr}`;
-                return;
-            }
-            
-            // ساخت تصویر QR کد در صورت عدم وجود
-            if (container.innerHTML === "") {
-                const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=130x130&data=${address}&color=06b6d4&bgcolor=020617`;
-                container.innerHTML = `
-                    <div class="p-3 bg-slate-950/90 border border-slate-800 rounded-xl shadow-2xl mt-2 animate-fadeIn">
-                        <img src="${qrUrl}" alt="QR" class="w-[130px] h-[130px] rounded-lg border border-cyan-500/20">
-                    </div>
-                `;
-            }
-            
-            container.classList.remove('hidden');
-            button.innerHTML = `<i class="fa-solid fa-qrcode"></i> ${dictionary[currentLang].hideQr}`;
-        }
-    </script>
+    // Initialize Page
+    updateDOM();
+  </script>
 </body>
 </html>
