@@ -73,8 +73,7 @@ function findMethod(id) {
 
       document.getElementById('app-title').textContent = dict.title;
       document.getElementById('app-subtitle').textContent = dict.subtitle;
-      document.getElementById('lang-btn-text').textContent = isFa ? "English / EN" : "فارسی / FA";
-      document.getElementById('lang-btn-text-short').textContent = isFa ? "EN" : "FA";
+      document.getElementById('lang-btn-text').textContent = isFa ? "EN" : "FA";
 
       document.getElementById('funds-title').textContent = dict.fundsTitle;
       document.getElementById('funds-list').innerHTML = dict.fundsItems.map(item => `
