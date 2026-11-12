@@ -1,3 +1,4 @@
+    html, body { overflow-x: hidden; }
     body { background-color: #020617; }
     .cosmic-dust {
       background-image: radial-gradient(rgba(6, 182, 212, 0.05) 1.2px, transparent 0);
