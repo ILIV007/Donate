@@ -7,10 +7,10 @@ const enData = {
       subtitle: "Your support fuels open-source work and free tools for everyone. Thank you for being part of this. 🌀",
       accTitle: "How to donate",
       accDesc: [
-        { subtitle: "1. Pick a coin & copy the address", text: "Choose your preferred cryptocurrency below. Click 'Copy' to grab the exact address, or tap 'Show QR Code' to scan it with your mobile wallet." },
-        { subtitle: "2. Match the network", text: "Make sure your withdrawal network matches the network on the card — TRC20 for USDT and TRX, BSC (BEP20) for BNB. A wrong network causes irreversible loss of funds." },
-        { subtitle: "3. Send & wait for confirmation", text: "Once sent, confirmation usually takes 1 to 3 minutes. Everything is peer-to-peer and decentralized — no signup, no personal details tracked." },
-        { subtitle: "4. Mind exchange fees", text: "If you send from an exchange (Binance, KuCoin, Coinbase and others), check its minimum transfer limit and fees so the amount you send arrives in full." }
+        { subtitle: "Pick a coin & copy the address", text: "Choose your preferred cryptocurrency below. Click 'Copy' to grab the exact address, or tap 'Show QR Code' to scan it with your mobile wallet." },
+        { subtitle: "Match the network", text: "Make sure your withdrawal network matches the network on the card — TRC20 for USDT and TRX, BSC (BEP20) for BNB. A wrong network causes irreversible loss of funds." },
+        { subtitle: "Send & wait for confirmation", text: "Once sent, confirmation usually takes 1 to 3 minutes. Everything is peer-to-peer and decentralized — no signup, no personal details tracked." },
+        { subtitle: "Mind exchange fees", text: "If you send from an exchange (Binance, KuCoin, Coinbase and others), check its minimum transfer limit and fees so the amount you send arrives in full." }
       ],
       fundsTitle: "What your support funds",
       fundsItems: [
@@ -38,10 +38,10 @@ const enData = {
       subtitle: "حمایت شما سوخت کار متن‌باز و ابزارهای رایگان برای همه است. ممنون که همراهی. 🌀",
       accTitle: "چطور حمایت کنم؟",
       accDesc: [
-        { subtitle: "۱. ارز را انتخاب و آدرس را کپی کنید", text: "ارز مورد نظر را از پایین انتخاب کنید، روی «کپی آدرس» بزنید یا با «نمایش کد QR» مستقیم با کیف پول موبایل اسکن کنید." },
-        { subtitle: "۲. شبکه را درست تنظیم کنید", text: "شبکهٔ برداشت را دقیقاً مطابق کارت تنظیم کنید — TRC20 برای تتر و ترون، BSC (BEP20) برای بایننس‌کوین. شبکهٔ اشتباه باعث از دست رفتن همیشگی دارایی می‌شود." },
-        { subtitle: "۳. ارسال و انتظار تایید", text: "بعد از ارسال معمولاً ۱ تا ۳ دقیقه طول می‌کشد تا در بلاکچین تایید شود. همه‌چیز همتابه‌همتا و غیرمتمرکز است — بدون ثبت‌نام و بدون ردیابی اطلاعات شخصی." },
-        { subtitle: "۴. کارمزد صرافی را در نظر بگیرید", text: "اگر از صرافی ارسال می‌کنید (بایننس، کوکوین، کوین‌بیس و...)، حداقل مبلغ و کارمزد انتقال را چک کنید تا مبلغ کامل برسد." }
+        { subtitle: "ارز را انتخاب و آدرس را کپی کنید", text: "ارز مورد نظر را از پایین انتخاب کنید، روی «کپی آدرس» بزنید یا با «نمایش کد QR» مستقیم با کیف پول موبایل اسکن کنید." },
+        { subtitle: "شبکه را درست تنظیم کنید", text: "شبکهٔ برداشت را دقیقاً مطابق کارت تنظیم کنید — TRC20 برای تتر و ترون، BSC (BEP20) برای بایننس‌کوین. شبکهٔ اشتباه باعث از دست رفتن همیشگی دارایی می‌شود." },
+        { subtitle: "ارسال و انتظار تایید", text: "بعد از ارسال معمولاً ۱ تا ۳ دقیقه طول می‌کشد تا در بلاکچین تایید شود. همه‌چیز همتابه‌همتا و غیرمتمرکز است — بدون ثبت‌نام و بدون ردیابی اطلاعات شخصی." },
+        { subtitle: "کارمزد صرافی را در نظر بگیرید", text: "اگر از صرافی ارسال می‌کنید (بایننس، کوکوین، کوین‌بیس و...)، حداقل مبلغ و کارمزد انتقال را چک کنید تا مبلغ کامل برسد." }
       ],
       fundsTitle: "حمایت شما چه چیزی را ممکن می‌کند",
       fundsItems: [
